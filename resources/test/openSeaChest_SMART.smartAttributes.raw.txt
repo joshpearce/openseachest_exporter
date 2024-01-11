@@ -1,0 +1,39 @@
+==========================================================================================
+ openSeaChest_SMART - openSeaChest drive utilities - NVMe Enabled
+ Copyright (c) 2014-1980 Seagate Technology LLC and/or its Affiliates, All Rights Reserved
+ openSeaChest_SMART Version: 2.3.1-4_1_1 X86_64
+ Build Date: Jan  1 1980
+ Today: Tue Jan  9 08:32:54 2024        User: root
+==========================================================================================
+
+/dev/sda - ST4000NM0035-1V4107 - ZC1DZZLZ - TN05 - ATA
+     # Attribute Name:                     Status: Current: Worst: Thresh: Raw (hex):
+*      1 Read Error Rate                      000Fh    53h     40h     2Ch   0000000CF44DD8h
+*      3 Spin Up Time                         0003h    5Eh     5Dh     00h   00000000000000h
+       4 Start/Stop Count                     0032h    64h     64h     14h   0000000000001Ah
+*      5 Retired Sectors Count                0033h    64h     64h     0Ah   00000000000000h
+*      7 Seek Error Rate                      000Fh    60h     3Ch     2Dh   000000DA5D6A4Eh
+       9 Power On Hours                       0032h    54h     54h     00h   000000000038EFh
+*     10 Spin Retry Count                     0013h    64h     64h     61h   00000000000000h
+      12 Drive Power Cycle Count              0032h    64h     64h     14h   00000000000024h
+     184 IOEDC Count                          0032h    64h     64h     63h   00000000000000h
+     187 Reported Un-correctable              0032h    64h     64h     00h   00000000000000h
+     188 Command Timeout                      0032h    64h     63h     00h   00000000000001h
+     189 High Fly Writes                      003Ah    64h     64h     00h   00000000000000h
+     190 Airflow Temperature                  0022h    3Fh     36h     28h   0000002E190025h
+     191 Shock Sensor Counter                 0032h    5Ch     5Ch     00h   000000000043D2h
+     192 Emergency Retract Count              0032h    64h     64h     00h   0000000000018Eh
+     193 Load-Unload Count                    0032h    4Ch     4Ch     00h   0000000000BDDFh
+     194 Temperature                          0022h    25h     2Eh     00h   00001400000025h
+     195 ECC On The Fly Count                 001Ah    16h     01h     00h   0000000CF44DD8h
+     197 Pending-Sparing Count                0012h    64h     64h     00h   00000000000000h
+     198 Offline Uncorrectable Sector Count   0010h    64h     64h     00h   00000000000000h
+     199 Ultra DMA CRC Error                  003Eh    C8h     C8h     00h   00000000000000h
+     240 Head Flight Hours                    0000h    64h     FDh     00h   07708B00003390h
+     241 Lifetime Writes From Host            0000h    64h     FDh     00h   000005F45B830Bh
+     242 Lifetime Reads From Host             0000h    64h     FDh     00h   00000439C4B330h
+
+* Indicates warranty attribute type, also called Pre-fail attribute type
+! - attribute is currently failing (thresholds required)
+^ - attribute has previously failed (thresholds required)
+"Current" is also referred to as the "Nominal" value in specifications.

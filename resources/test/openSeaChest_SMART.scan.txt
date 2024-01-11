@@ -1,0 +1,13 @@
+==========================================================================================
+ openSeaChest_SMART - openSeaChest drive utilities - NVMe Enabled
+ Copyright (c) 2014-1980 Seagate Technology LLC and/or its Affiliates, All Rights Reserved
+ openSeaChest_SMART Version: 2.3.1-4_1_1 X86_64
+ Build Date: Jan  1 1980
+ Today: Tue Jan  9 08:31:10 2024        User: root
+==========================================================================================
+Vendor   Handle       Model Number            Serial Number          FwRev     
+ATA      /dev/sda     ST4000NM0035-1V4107     ZC1DZZLZ               TN05      
+ATA      /dev/sdb     ST4000NM0035-1V4107     ZC1DZYCQ               TN05      
+ATA      /dev/sdc     ST4000NM0035-1V4107     ZC1E04WR               TN05      
+ATA      /dev/sdd     ST4000NM0035-1V4107     ZC1DZZB2               TN05      
+WDC WD10 /dev/sde     JUCT-61CYNY0            AD8080701240           0         

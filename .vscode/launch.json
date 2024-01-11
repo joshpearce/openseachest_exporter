@@ -1,0 +1,90 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'openseachest_exporter'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=openseachest_exporter"
+                ],
+                "filter": {
+                    "name": "openseachest_exporter",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'openseachest_exporter'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=openseachest_exporter",
+                    "--package=openseachest_exporter"
+                ],
+                "filter": {
+                    "name": "openseachest_exporter",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+                "--opensea-smart-bin",
+                // Using a binary with setuid set, since this tool requires root/sudo
+                "${workspaceFolder}/tools/openSeaChest_SMART" 
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "HOST": "nas"
+              }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'openseachest_exporter'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=openseachest_exporter",
+                    "--package=openseachest_exporter"
+                ],
+                "filter": {
+                    "name": "openseachest_exporter",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug integration test 'parser_tests'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--test=parser_tests",
+                    "--package=openseachest_exporter"
+                ],
+                "filter": {
+                    "name": "parser_tests",
+                    "kind": "test"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

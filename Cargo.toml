@@ -1,0 +1,19 @@
+[package]
+name            = "openseachest_exporter"
+version         = "0.1.0"
+edition         = "2021"
+authors         = ["Josh Pearce <josh@jjpdev.com>"]
+keywords        = ["prometheus", "smart", "seagate", "openSeaChest"]
+license         = "MIT"
+description     = "SMART data exporter for Prometheus using openSeaChest tools"
+homepage        = "https://github.com/joshpearce/openseachest_exporter"
+repository      = "https://github.com/joshpearce/openseachest_exporter.git"
+
+[dependencies]
+clap = { version =  "4.4.12", features = ["derive", "env"] }
+env_logger = "0.10.1"
+log = "0.4.20"
+regex = "1.10.2"
+prometheus_exporter_base = { version = "1.4.0", features = ["hyper_server"] }
+tokio = { version = "1.35.1", features = ["macros", "rt"] }
+hyper = { version = "0.14.23", features = ["stream"] }
