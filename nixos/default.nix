@@ -1,5 +1,6 @@
 {flake}:
 { config, pkgs, lib, ... }:
+with lib;
 let
   cfg = config.services.openseachest_exporter;
 
