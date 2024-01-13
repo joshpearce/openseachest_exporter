@@ -5,7 +5,7 @@ let
   cfg = config.services.openseachest_exporter;
 
   serviceArgs = srv_cfg: ([
-    "--opensea-smart-bin ${srv_cfg.package}/bin/openseachest_exporter"
+    "--opensea-smart-bin ${srv_cfg.openSeaSmartBinary}"
     "--listen ${srv_cfg.listenAddress}"
     "--log-level ${srv_cfg.logLevel}"
     "--host-name ${srv_cfg.hostName}"
@@ -26,7 +26,7 @@ in
     openSeaSmartBinary = mkOption {
       description = "Path to openSeaChest_SMART binary.";
       type = types.path;
-      default = "${pkgs.openseachest.outPath}/bin/openSeaChest_SMART.";
+      default = "${pkgs.openseachest.outPath}/bin/openSeaChest_SMART";
     };
 
     listenAddress = mkOption {
