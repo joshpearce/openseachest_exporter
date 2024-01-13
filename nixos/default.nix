@@ -19,7 +19,7 @@ in
 
     package = mkOption {
       description = "Package to run openseachest_exporter out of";
-      default = flake.packages.${pkgs.stdenv.targetPlatform.system}.openseachest_exporter;
+      default = flake.packages.${pkgs.stdenv.targetPlatform.system}.default;
       type = types.package;
     };
 
