@@ -45,7 +45,7 @@
             ],
             "cwd": "${workspaceFolder}",
             "env": {
-                "HOST": "nas"
+                "OPENSEA_SMART_HOST": "nas"
               }
         },
         {

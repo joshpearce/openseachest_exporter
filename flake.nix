@@ -1,43 +1,58 @@
 {
-  inputs = {
-    systems.url = "github:nix-systems/default-linux";
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.systems.follows = "systems";
-    naersk.url = "github:nix-community/naersk";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  description = "SMART data exporter for Prometheus using openSeaChest tools";
 
-    nixpkgs-mozilla = {
-      url = "github:mozilla/nixpkgs-mozilla";
-      flake = false;
-    };
+  inputs = {
+    
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    naersk.url = "github:nix-community/naersk";
+    naersk.inputs.nixpkgs.follows = "nixpkgs";
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, flake-utils, naersk, nixpkgs, systems, nixpkgs-mozilla }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = (import nixpkgs) {
-          inherit system;
+  outputs = inputs @ { 
+    self,
+    nixpkgs,
+    flake-parts, 
+    naersk,
+    fenix,
+    ... 
+  }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        
+      ];
 
-          overlays = [
-            (import nixpkgs-mozilla)
-          ];
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      perSystem = { 
+        config, 
+        self', 
+        inputs', 
+        pkgs, 
+        system, 
+        lib, 
+        ... 
+      }: 
+      let 
+        rustToolchain = with fenix.packages.${system}; combine [
+          minimal.rustc
+          minimal.cargo
+        ];
+        naerskLib = naersk.lib.${system}.override {
+          cargo = rustToolchain;
+          rustc = rustToolchain;
         };
+      in
+      {
 
-        toolchain = (pkgs.rustChannelOf {
-          rustToolchain = ./rust-toolchain;
-          sha256 = "sha256-SXRtAuO4IqNOQq+nLbrsDFbVk+3aVA8NNpSZsKlVH/8=";
-        }).rust;
-
-        naersk' = pkgs.callPackage naersk {
-          cargo = toolchain;
-          rustc = toolchain;
-        };
-
-      in rec {
-        # For `nix build` & `nix run`:
-        defaultPackage = naersk'.buildPackage {
+        packages.default = naerskLib.buildPackage {
           src = ./.;
         };
-      }
-    );
+      };
+
+      flake = {
+        nixosModules.default = import ./nixos {flake = self;};
+
+      };
+    };
 }

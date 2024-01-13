@@ -39,24 +39,24 @@ struct CliOptions {
         env = "OPENSEA_SMART_LOG_LEVEL",
         value_parser = ["trace", "debug", "info", "warn", "error"],
         default_value = "error",
-        help = "Path to openSeaChest_SMART binary"
+        help = "Log level for stderr output"
     )]
     log_level: String,
 
     #[arg(
         long = "host-name",
-        env = "HOST",
+        env = "OPENSEA_SMART_HOST",
         help = "Hostname for metrics",
-        default_value = "no_host_name"
+        default_value = "host_name_not_set"
     )]
     host_name: String,
 
-    #[arg(
-        long = "map-file",
-        env = "OPENSEA_SMART_MAP_FILE",
-        help = "JSON file for renaming metrics"
-    )]
-    map_file: Option<String>,
+    // #[arg(
+    //     long = "map-file",
+    //     env = "OPENSEA_SMART_MAP_FILE",
+    //     help = "JSON file for renaming metrics"
+    // )]
+    // map_file: Option<String>,
 }
 
 async fn gen_metrics(
