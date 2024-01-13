@@ -5,10 +5,14 @@ let
   cfg = config.services.openseachest_exporter;
 
   serviceArgs = srv_cfg: ([
-    "--opensea-smart-bin ${srv_cfg.openSeaSmartBinary}"
-    "--listen ${srv_cfg.listenAddress}"
-    "--log-level ${srv_cfg.logLevel}"
-    "--host-name ${srv_cfg.hostName}"
+    "--opensea-smart-bin"
+    "${srv_cfg.openSeaSmartBinary}"
+    "--listen"
+    "${srv_cfg.listenAddress}"
+    "--log-level"
+    "${srv_cfg.logLevel}"
+    "--host-name"
+    "${srv_cfg.hostName}"
   ]);
 
 in
