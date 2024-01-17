@@ -61,7 +61,7 @@ in
     openSeaSmartBinary = mkOption {
       description = "Path to openSeaChest_SMART binary.";
       type = types.path;
-      default = "${custom_openseachest}/bin/openSeaChest_SMART";
+      default = "${pkgs.openseachest.outPath}/bin/openSeaChest_SMART";
     };
 
     listenAddress = mkOption {

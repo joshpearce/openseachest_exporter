@@ -42,20 +42,11 @@
           cargo = rustToolchain;
           rustc = rustToolchain;
         };
-        stdenv = nixpkgs.legacyPackages.${system}.stdenv;
-        fetchFromGitHub = nixpkgs.legacyPackages.${system}.fetchFromGitHub;
-        
       in
       {
 
         packages.default = naerskLib.buildPackage {
           src = ./.;
-        };
-
-        packages.custom_openseachest = (import ./custom-openseachest.nix) { 
-          inherit lib; 
-          inherit stdenv; 
-          inherit fetchFromGitHub; 
         };
 
       };
