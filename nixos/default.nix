@@ -15,6 +15,37 @@ let
     "${srv_cfg.hostName}"
   ]);
 
+  lockedDownserviceConfig = {
+      # PrivateNetwork = false; # We need access to the internet for ts
+      # # Activate a bunch of strictness:
+      DeviceAllow = "";
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      NoNewPrivileges = true;
+      # PrivateDevices = true;
+      PrivateMounts = true;
+      PrivateTmp = true;
+      PrivateUsers = true;
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = true;
+      ProtectProc = "noaccess";
+      ProtectKernelModules = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelTunables = true;
+      RestrictNamespaces = true;
+      # AmbientCapabilities = "";
+      # CapabilityBoundingSet = "";
+      ProtectSystem = "strict";
+      # RemoveIPC = true;
+      RestrictRealtime = true;
+      # RestrictSUIDSGID = true;
+      # UMask = "0066";
+    };
+
+    custom_openseachest = flake.packages.${pkgs.stdenv.targetPlatform.system}.custom_openseachest;
+
 in
 {
   options.services.openseachest_exporter = with lib; {
@@ -30,7 +61,7 @@ in
     openSeaSmartBinary = mkOption {
       description = "Path to openSeaChest_SMART binary.";
       type = types.path;
-      default = "${pkgs.openseachest.outPath}/bin/openSeaChest_SMART";
+      default = "${custom_openseachest}/bin/openSeaChest_SMART";
     };
 
     listenAddress = mkOption {
@@ -62,7 +93,8 @@ in
         ExecStart = ''
           ${cfg.package}/bin/openseachest_exporter ${lib.escapeShellArgs (serviceArgs cfg)}
         '';
-      };
+      }
+      // lockedDownserviceConfig;
     };
     
   };

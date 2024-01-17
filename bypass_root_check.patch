@@ -1,0 +1,14 @@
+Submodule subprojects/opensea-common contains modified content
+diff --git a/subprojects/opensea-common/src/common_nix.c b/subprojects/opensea-common/src/common_nix.c
+index 0e42f6a..175cb33 100644
+--- a/subprojects/opensea-common/src/common_nix.c
++++ b/subprojects/opensea-common/src/common_nix.c
+@@ -1507,7 +1507,7 @@ double get_Seconds(seatimer_t timer)
+ bool is_Running_Elevated(void)
+ {
+     bool isElevated = false;
+-    if (getuid() == ROOT_UID_VAL || geteuid() == ROOT_UID_VAL)
++    if (true)
+     {
+         isElevated = true;
+     }
