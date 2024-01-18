@@ -114,6 +114,7 @@ async fn gen_metrics(
                         for attr in attr_vec {
                             let currently_failing: i32 = match attr.currently_failing { Some(f) => {if f {1} else {0}}, None => -1 };
                             let previously_failed: i32 = match attr.previously_failed { Some(f) => {if f {1} else {0}}, None => -1 };
+
                             pc.render_and_append_instance(
                                 &PrometheusInstance::<u8, MissingValue>::new()
                                 .with_label("currently_failing", currently_failing.to_string().as_ref())
@@ -130,6 +131,7 @@ async fn gen_metrics(
                                 .with_label("firmware_revision", attr.firmware_revision.as_ref())
                                 .with_label("host", options.host_name.as_ref())
                                 .with_label("raw", attr.raw_value.to_string().as_ref())
+                                .with_label("raw_2b", (attr.raw_value & 0xFFFF).to_string().as_ref())
                                 .with_value(attr.normalized_value.into())
                                 .with_current_timestamp()
                                 .expect("error getting the current UNIX epoch"),
