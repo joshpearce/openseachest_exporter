@@ -16,13 +16,12 @@ let
   ]);
 
   lockedDownserviceConfig = {
-      # PrivateNetwork = false; # We need access to the internet for ts
-      # # Activate a bunch of strictness:
       DeviceAllow = "";
       LockPersonality = true;
       MemoryDenyWriteExecute = true;
       NoNewPrivileges = true;
-      # PrivateDevices = true;
+      ProcSubset= ""; # new
+
       PrivateMounts = true;
       PrivateTmp = true;
       PrivateUsers = true;
@@ -35,13 +34,13 @@ let
       ProtectKernelLogs = true;
       ProtectKernelTunables = true;
       RestrictNamespaces = true;
-      # AmbientCapabilities = "";
-      # CapabilityBoundingSet = "";
+      AmbientCapabilities = "";
+      CapabilityBoundingSet = "";
       ProtectSystem = "strict";
-      # RemoveIPC = true;
+      RemoveIPC = true;
       RestrictRealtime = true;
-      # RestrictSUIDSGID = true;
-      # UMask = "0066";
+      RestrictSUIDSGID = true;
+      UMask = "7777";
     };
 
     custom_openseachest = flake.packages.${pkgs.stdenv.targetPlatform.system}.custom_openseachest;
@@ -88,6 +87,7 @@ in
   config = mkIf cfg.enable {
     systemd.services.openseachest_exporter = {
       wantedBy = [ "multi-user.target" ];
+      wants = ["network-online.target"];
       after = ["network-online.target"];
       serviceConfig = {
         ExecStart = ''
