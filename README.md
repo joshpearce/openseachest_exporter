@@ -42,8 +42,6 @@ Built with the rust Prometheus exporter framework, [prometheus_exporter_base](ht
             Path to openSeaChest_SMART binary [env: OPENSEA_SMART_LOG_LEVEL=] [default: error] [possible values: trace, debug, info, warn, error]
         --host-name <HOST_NAME>
             Hostname for metrics [env: HOST=] [default: no_host_name]
-        --map-file <MAP_FILE>
-            JSON file for renaming metrics [env: OPENSEA_SMART_MAP_FILE=]
     -h, --help
             Print help
     ```
