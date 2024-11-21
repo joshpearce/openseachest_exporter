@@ -4,6 +4,10 @@ A Prometheus exporter for Seagate drive S.M.A.R.T. metrics that parses [openSeaC
 
 Built with the rust Prometheus exporter framework, [prometheus_exporter_base](https://github.com/MindFlavor/prometheus_exporter_base/tree/master).
 
+### Grafana dashboard included
+![Seagate drive S.M.A.R.T. warranty metrics](resources/openseachest_dashboard_1.png?raw=true "Seagate drive S.M.A.R.T. warranty metrics")
+![Seagate drive S.M.A.R.T. physical property metrics](resources/openseachest_dashboard_1.png?raw=true "Seagate drive S.M.A.R.T. physical property metrics")
+
 ## Setup
 
 ### Build from source
