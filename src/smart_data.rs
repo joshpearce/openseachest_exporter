@@ -38,7 +38,7 @@ impl SmartAttribute {
         let re = Regex::new(r"[^a-z]").unwrap();
         let name = self.name.to_lowercase();
         let simple_name = re.replace_all(&name, "_");
-        simple_name.to_string()
+        format!("seagate_{}", simple_name)
     }
 }
 

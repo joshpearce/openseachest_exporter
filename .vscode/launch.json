@@ -41,7 +41,9 @@
             "args": [
                 "--opensea-smart-bin",
                 // Using a binary with setuid set, since this tool requires root/sudo
-                "${workspaceFolder}/tools/openSeaChest_SMART" 
+                "${workspaceFolder}/tools/test.sh",
+                "--listen",
+                "127.0.0.1:10998"
             ],
             "cwd": "${workspaceFolder}",
             "env": {

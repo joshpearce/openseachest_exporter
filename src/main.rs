@@ -104,6 +104,29 @@ async fn gen_metrics(
                         }
                     }
                     let mut result: String = "".to_owned();
+
+                    if let Some((_, attr_vec)) = attrs_by_type.iter().next() {
+                        let mut pc = PrometheusMetric::build()
+                            .with_name("seagate_disk_info")
+                            .with_metric_type(MetricType::Gauge)
+                            .with_help("Seagate Disk Info").build();
+                        for attr in attr_vec {
+                            pc.render_and_append_instance(
+                                &PrometheusInstance::<u8, MissingValue>::new()
+                                .with_label("vendor", attr.vendor.as_ref())
+                                .with_label("handle", attr.handle.as_ref())
+                                .with_label("model_number", attr.model_number.as_ref())
+                                .with_label("serial_number", attr.serial_number.as_ref())
+                                .with_label("firmware_revision", attr.firmware_revision.as_ref())
+                                .with_label("host", options.host_name.as_ref())
+                                .with_value(1)
+                                .with_current_timestamp()
+                                .expect("error getting the current UNIX epoch"),
+                            );
+                        }
+                        result.push_str(pc.render().as_str());
+                    }
+
                     for (name, attr_vec) in &attrs_by_type {
                         let first = attr_vec.first().unwrap();
                         let metric_type: MetricType = if first.event_count { MetricType::Counter } else { MetricType::Gauge };
@@ -124,11 +147,7 @@ async fn gen_metrics(
                                 .with_label("warranty", attr.warranty.to_string().as_ref())
                                 .with_label("decrease_means_degrade", attr.decrease_means_degrade.to_string().as_ref())
                                 .with_label("error_rate", attr.error_rate.to_string().as_ref())
-                                .with_label("vendor", attr.vendor.as_ref())
                                 .with_label("handle", attr.handle.as_ref())
-                                .with_label("model_number", attr.model_number.as_ref())
-                                .with_label("serial_number", attr.serial_number.as_ref())
-                                .with_label("firmware_revision", attr.firmware_revision.as_ref())
                                 .with_label("host", options.host_name.as_ref())
                                 .with_label("raw", attr.raw_value.to_string().as_ref())
                                 .with_label("raw_2b", (attr.raw_value & 0xFFFF).to_string().as_ref())
