@@ -43,8 +43,6 @@ let
       UMask = "7777";
     };
 
-    custom_openseachest = flake.packages.${pkgs.stdenv.targetPlatform.system}.custom_openseachest;
-
 in
 {
   options.services.openseachest_exporter = with lib; {
